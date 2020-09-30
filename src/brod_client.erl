@@ -561,6 +561,8 @@ ensure_metadata_connection(State) ->
 get_metadata_connection(#state{meta_conn = Conn}) -> Conn.
 
 do_get_leader_connection(State0, Topic, Partition) ->
+  error_logger:info_msg("[debug] brod_client:do_get_leader_connection/3 with State=[~p], Topic=[~p], Partition=[~p]",
+                        [State0, Topic, Partition]),
   State = ensure_metadata_connection(State0),
   MetaConn = get_metadata_connection(State),
   Timeout = timeout(State),
